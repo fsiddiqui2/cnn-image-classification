@@ -14,7 +14,7 @@ import os
 import sys
 import argparse
 
-from model import Model
+from model import CNN
 from dataset import CatDogDataset
 
 from torchmetrics import Accuracy, F1Score, AUROC
@@ -57,11 +57,11 @@ def main(args):
     # save_dir = "CNN2_lr1e-4_bs128_dropout"
     save_dir = args.save_dir
     data_dir = "PetImages"
-
-    testset = CatDogDataset(split="test", root_dir=data_dir, transform=transform)
+    data_seed = args.data_seed
+    testset = CatDogDataset(split="test", root_dir=data_dir, transform=transform, random_seed=data_seed)
 
     batch_size = args.batch_size
-    testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=0)
+    testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=0, )
 
     # model = Model(image_dim=224)
     # model = model.to(device)

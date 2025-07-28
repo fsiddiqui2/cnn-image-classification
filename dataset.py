@@ -110,7 +110,7 @@ class CatDogDataset(Dataset):
         elif self.split == 'test':
             self.data = self.data[train_size + val_size : train_size + val_size + test_size]
 
-        print(f"Dataset '{self.split}' split created with {len(self.data)} samples out of {total_size} total.")
+        print(f"Dataset '{self.split}' split created with {len(self.data)} samples out of {total_size} total, seed {self.random_seed}.")
 
     def class_distribution(self):
         """

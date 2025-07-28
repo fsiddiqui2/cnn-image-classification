@@ -15,7 +15,7 @@ import os
 import sys
 import argparse
 
-from model import Model
+from model import CNN
 from dataset import CatDogDataset
 
 from torchmetrics import Accuracy, F1Score, AUROC
@@ -105,7 +105,7 @@ def main(args):
     testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=0)
 
     lr = args.lr
-    model = Model(image_dim=224)
+    model = CNN(image_dim=224)
     model = model.to(device)
 
     criterion = nn.BCEWithLogitsLoss()
@@ -189,11 +189,11 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Dog Cat CNN Classifier")
     parser.add_argument("--save-dir", type=str, help="Directory to save model, history, and results")
-    parser.add_argument("--lr", type=float, default="1e-4", help="Model learning rate")
-    parser.add_argument("--epochs", type=int, default=50, help="Number of training epochs")
+    parser.add_argument("--lr", type=float, default="1e-3", help="Model learning rate")
+    parser.add_argument("--epochs", type=int, default=20, help="Number of training epochs")
     parser.add_argument("--batch-size", type=int, default=128, help="Batch size for training")
     parser.add_argument("--data-seed", type=int, default=42, help="Random seed for train-val-test split")
-    parser.add_argument("--name", type=str, help="If save-dir not specified, will be set to [name]_lr[lr]_bs[batch-size]")
+    parser.add_argument("--name", type=str, default="CNN", help="If save-dir not specified, will be set to [name]_lr[lr]_bs[batch-size]")
 
     args = parser.parse_args()
 
