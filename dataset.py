@@ -75,14 +75,8 @@ class CatDogDataset(Dataset):
 
         # Assign labels: 0 for cat, 1 for dog
         for image_path in cat_images:
-            # image = Image.open(img_path).convert('RGB')
-            # if self.transform:
-            #     image = self.transform(image)
             self.data.append((image_path, 0)) # 0 for Cat
         for image_path in dog_images:
-            # image = Image.open(img_path).convert('RGB')
-            # if self.transform:
-            #     image = self.transform(image)
             if "9041.jpg" in image_path: continue # skip corrupted file
             self.data.append((image_path, 1)) # 1 for Dog
 
@@ -136,5 +130,4 @@ class CatDogDataset(Dataset):
         if self.transform:
             image = self.transform(image)
 
-        #return self.data[idx]
         return image, label
