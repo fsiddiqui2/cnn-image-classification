@@ -6,7 +6,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import TensorDataset, DataLoader
-# from torchvision import transforms
 import torchvision.transforms.v2 as transforms
 import sklearn.metrics as metrics
 
